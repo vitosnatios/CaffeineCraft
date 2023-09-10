@@ -1,21 +1,38 @@
 'use client';
-import Image from 'next/image';
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
 import { ICartProduct } from '@/helpers/types';
-import { deleteFromCart, getCookies } from '@/helpers/cookiesHelper';
+import { changeQuantityFromAItem, getCookies } from '@/helpers/cookiesHelper';
 import CartItem from '../components/cart/CartItem';
 
 const CartPage = () => {
   const [cartItems, setCartItems] = useState<ICartProduct[] | []>([]);
+  const [itensQuantity, setItensQuantity] = useState<{
+    [key: string]: number;
+  }>();
 
-  const handleQuantityChange = (itemName: string, newQuantity: number) => {};
+  const handleQuantityChange = (itemName: string, newQuantity: number) => {
+    if (newQuantity == 0) return;
+    changeQuantityFromAItem(itemName, 'cart', newQuantity);
+    setQuantityAndCartItens();
+  };
 
-  useEffect(() => {
-    setCartItems(getCookies('cart'));
-  }, []);
+  const setQuantityAndCartItens = () => {
+    const coffes = getCookies('cart');
+    setCartItems(coffes);
+    coffes.forEach(({ image, quantity }) => {
+      setItensQuantity((prev) => {
+        return { ...prev, [image]: quantity };
+      });
+    });
+  };
 
-  const total = cartItems.reduce((acc, item) => acc + item.price * 1, 0);
+  useEffect(() => setQuantityAndCartItens(), []);
+
+  const total = cartItems.reduce(
+    (acc, item) => acc + item.price * itensQuantity![item.image],
+    0
+  );
 
   return (
     <section className='bg-gray-100 py-8 px-4 md:px-16 min-h-screen'>
@@ -27,6 +44,7 @@ const CartPage = () => {
             product={product}
             handleQuantityChange={handleQuantityChange}
             setCartItems={setCartItems}
+            itemStartingQuantity={itensQuantity![product.image]}
           />
         ))}
       </ul>

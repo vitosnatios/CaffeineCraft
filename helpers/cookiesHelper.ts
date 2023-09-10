@@ -13,25 +13,29 @@ export const hasOnCookiesAlready = (name: string, field: string) => {
 };
 
 const addToCart = (toAdd: unknown, field: string) => {
-  setCookie(field, JSON.stringify(toAdd));
+  setCookie(field, JSON.stringify(toAdd), {
+    sameSite: 'none',
+    secure: true,
+    maxAge: 60 * 60 * 24 * 7,
+  });
 };
 
-export const AddToCart = (
-  name: string,
+export const addOneToCart = (
   price: number,
   image: string,
   imgWidth: number,
   imgHeight: number,
-  field: string
+  field: string,
+  quantity: number = 1
 ) => {
   const prevCookies = getCookies(field);
-  const hasAlready = hasOnCookiesAlready(name, field);
+  const hasAlready = hasOnCookiesAlready(image, field);
   if (!hasAlready) {
     const updatedCookie = [
       ...prevCookies,
-      { name, price, quantity: 1, image, imgWidth, imgHeight },
+      { name: image, price, image, imgWidth, imgHeight, quantity },
     ];
-    addToCart(updatedCookie, 'cart');
+    addToCart(updatedCookie, field);
   }
 };
 
@@ -40,6 +44,29 @@ export const deleteFromCart = (name: string, field: string) => {
     const newCookie = getCookies(field).filter(
       ({ name: prodName }) => prodName !== name
     );
-    addToCart(newCookie, 'cart');
+    addToCart(newCookie, field);
+  }
+};
+
+export const changeQuantityFromAItem = (
+  name: string,
+  field: string,
+  quantity: number
+) => {
+  const prevCookies = getCookies(field);
+  const itemToChangeQuantity = prevCookies.find(
+    ({ name: prodName }) => prodName === name
+  );
+  if (itemToChangeQuantity) {
+    const updatedCookies = prevCookies.map((coffe) => {
+      if (coffe.name === name) {
+        return {
+          ...coffe,
+          quantity,
+        };
+      }
+      return coffe;
+    });
+    addToCart(updatedCookies, 'cart');
   }
 };
