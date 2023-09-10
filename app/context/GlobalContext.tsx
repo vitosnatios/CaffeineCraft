@@ -1,5 +1,5 @@
 import { isProduct } from '@/helpers/isProduct';
-import { IProduct } from '@/types';
+import { IProduct } from '@/helpers/types';
 import { createContext, useContext, useState, useEffect } from 'react';
 
 type Props = { children: React.ReactElement };
@@ -21,7 +21,7 @@ const GlobalContextProvider = ({ children }: Props) => {
       const { products: produ } = await res.json();
       const productsFromJson = produ.filter(isProduct);
       const _idToString = productsFromJson.map((prod: IProduct) => {
-        return { ...prod, _id: prod._id };
+        return { ...prod, _id: String(prod._id) };
       });
       setProducts(_idToString);
     };

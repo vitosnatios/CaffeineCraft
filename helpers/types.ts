@@ -10,3 +10,9 @@ export interface IProduct {
   imgWidth: number;
   imgHeight: number;
 }
+
+export interface ICartProduct {
+  name: string;
+  price: number;
+  quantity: number;
+}
