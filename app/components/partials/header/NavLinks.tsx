@@ -1,12 +1,10 @@
 import Link from 'next/link';
 import React from 'react';
 
-type Props = {};
-
-const NavLinks = (props: Props) => {
+const NavLinks = () => {
   return (
     <>
-      <Link href='/login' className='text-gray-300 hover:text-white block'>
+      <Link href='/auth' className='text-gray-300 hover:text-white block'>
         Login / Profile
       </Link>
       <Link href='/shop' className='text-gray-300 hover:text-white block'>

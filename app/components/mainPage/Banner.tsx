@@ -4,7 +4,7 @@ import BannerText from './BannerText';
 
 const Banner = () => {
   return (
-    <div className='container mx-auto flex flex-col md:flex-row items-center gap-10'>
+    <div className='container mx-auto flex flex-col md:flex-row items-center gap-10 mb-5'>
       <BannerText />
       <div className='self-center'>
         <Image

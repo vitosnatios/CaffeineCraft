@@ -10,12 +10,8 @@ export default async function Home() {
   const products = await getAllProducts();
   return (
     <>
-      <section className='bg-gray-100 py-8 px-4 md:px-16'>
-        <Banner />
-      </section>
-      <section className='bg-white py-8 px-4 md:px-16 h-80'>
-        <FeaturedItemsCarousel products={products} />
-      </section>
+      <Banner />
+      <FeaturedItemsCarousel products={products} />
     </>
   );
 }
