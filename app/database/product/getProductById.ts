@@ -1,5 +1,5 @@
 import { isProduct } from '@/helpers/isProduct';
-import { getCollection } from './connect';
+import { getCollection } from '../connect';
 
 export const getProductByName = async (slug: string) => {
   try {

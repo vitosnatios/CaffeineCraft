@@ -1,5 +1,5 @@
 import { isProduct } from '@/helpers/isProduct';
-import { getCollection } from './connect';
+import { getCollection } from '../connect';
 import { IProduct } from '@/helpers/types';
 
 export const getAllProducts = async (): Promise<IProduct[]> => {

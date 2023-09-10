@@ -3,11 +3,12 @@ import AuthContainer from '@/app/components/auth/AuthContainer';
 import Form from '@/app/components/form/Form';
 import FormInput from '@/app/components/form/FormInput';
 import Button from '@/app/components/generalElements/Button';
+import { RegisterForm, registerUser } from '@/app/database/registerUser';
 import Link from 'next/link';
 import React, { useState } from 'react';
 
 const RegisterPage = () => {
-  const [form, setForm] = useState<{ [key: string]: string }>({
+  const [form, setForm] = useState<RegisterForm>({
     name: '',
     email: '',
     age: '',
@@ -21,8 +22,8 @@ const RegisterPage = () => {
     }));
   };
 
-  const handleSubmit = () => {
-    console.log(form);
+  const handleSubmit = async () => {
+    await registerUser(form);
   };
 
   return (

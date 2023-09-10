@@ -1,6 +1,6 @@
 import Banner from './components/mainPage/Banner';
 import dynamic from 'next/dynamic';
-import { getAllProducts } from './database/getAllProducts';
+import { getAllProducts } from './database/product/getAllProducts';
 const FeaturedItemsCarousel = dynamic(
   () => import('./components/mainPage/FeaturedItemsCarousel'),
   { ssr: false }

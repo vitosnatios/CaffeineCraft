@@ -1,4 +1,4 @@
-import { getCollection } from './connect';
+import { getCollection } from '../connect';
 
 export const getProductsSlugNames = async (fieldName: string) => {
   const collection = await getCollection('products');

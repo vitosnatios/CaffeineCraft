@@ -1,6 +1,6 @@
 import AddToCartButton from '@/app/components/coffePage/AddToCartButton';
-import { getProductByName } from '@/app/database/getProductById';
-import { getProductsSlugNames } from '@/app/database/getProductsSlugNames';
+import { getProductByName } from '@/app/database/product/getProductById';
+import { getProductsSlugNames } from '@/app/database/product/getProductsSlugNames';
 import { IProduct } from '@/helpers/types';
 import Image from 'next/image';
 
