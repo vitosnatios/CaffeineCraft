@@ -15,4 +15,7 @@ export interface ICartProduct {
   name: string;
   price: number;
   quantity: number;
+  image: string;
+  imgWidth: number;
+  imgHeight: number;
 }

@@ -1,20 +1,22 @@
 'use client';
 import { AddToCart, hasOnCookiesAlready } from '@/helpers/cookiesHelper';
+import { IProduct } from '@/helpers/types';
 import { useState, useEffect } from 'react';
 
-type Props = { name: string; price: number };
-
-const AddToCartButton = ({ name, price }: Props) => {
+const AddToCartButton = ({ product }: { product: IProduct }) => {
+  const { name, price, image, imgWidth, imgHeight } = product;
   const [buttonText, setButtonText] = useState<string>('Add to Cart');
+
   const handleClick = () => {
     if (buttonText !== 'Already selected') {
-      AddToCart(name, price);
+      AddToCart(name, price, image, imgWidth, imgHeight, 'cart');
       setButtonText('Already selected');
     }
   };
+
   useEffect(() => {
     setButtonText(
-      hasOnCookiesAlready(name) ? 'Already selected' : 'Add to Cart'
+      hasOnCookiesAlready(name, 'cart') ? 'Already selected' : 'Add to Cart'
     );
   }, [name]);
 

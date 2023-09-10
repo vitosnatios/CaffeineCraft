@@ -2,20 +2,14 @@ import Image from 'next/image';
 import Link from 'next/link';
 import React from 'react';
 import AddToCartButton from './AddToCartButton';
+import { IProduct } from '@/helpers/types';
 
-const CoffeCard = ({
-  image,
-  name,
-  price,
-}: {
-  image: string;
-  name: string;
-  price: number;
-}) => {
+const CoffeCard = ({ product }: { product: IProduct }) => {
+  const { image, name, price } = product;
   return (
     <div className='bg-white rounded-lg shadow-md overflow-hidden'>
       <Link href={`/coffe/${image}`}>
-        <div className='relative h-44'>
+        <div className='relative h-60'>
           <Image
             src={`/coffes/${image}.jpg`}
             alt={name}
@@ -30,7 +24,7 @@ const CoffeCard = ({
           <h2 className='text-xl font-semibold text-gray-800 mb-2'>{name}</h2>
           <p className='text-gray-600 mb-2'>Price: R${price.toFixed(2)}</p>
         </Link>
-        <AddToCartButton name={image} price={price} />
+        <AddToCartButton product={product} />
       </div>
     </div>
   );
