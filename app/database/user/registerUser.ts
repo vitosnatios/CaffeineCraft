@@ -1,8 +1,8 @@
 'use server';
 const bcrypt = require('bcrypt');
-const jwt = require('jsonwebtoken');
 
-import { getCollection } from './connect';
+import { getCollection } from '../connect';
+import { createJwt } from './jwt';
 
 export type RegisterForm = {
   name: string;
@@ -48,9 +48,10 @@ export const registerUser = async (form: RegisterForm) => {
     };
     const insert = await collection!.insertOne({ ...user });
     if (insert) {
-      //criar jwt e logar o kra socando o jwt no cache
+      return createJwt(String(insert.insertedId));
     }
-  } catch (error) {
-    console.log(error);
+    throw new Error('Failed creating new user.');
+  } catch (error: any) {
+    return { message: error.message };
   }
 };

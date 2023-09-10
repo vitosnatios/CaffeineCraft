@@ -1,8 +1,10 @@
+'use client';
 import './globals.css';
 import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
 import Header from './components/partials/Header';
 import Footer from './components/partials/Footer';
+import GlobalContextProvider from './context/GlobalContext';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -18,15 +20,17 @@ export default function RootLayout({
 }) {
   return (
     <html lang='en'>
-      <body className={inter.className}>
-        <div className='flex flex-col min-h-screen'>
-          <Header />
-          <div className='flex-grow bg-gray-100py-8 px-4 md:px-16 bg-gray-100'>
-            {children}
+      <GlobalContextProvider>
+        <body className={inter.className}>
+          <div className='flex flex-col min-h-screen'>
+            <Header />
+            <div className='flex-grow bg-gray-100py-8 px-4 md:px-16 bg-gray-100'>
+              {children}
+            </div>
+            <Footer />
           </div>
-          <Footer />
-        </div>
-      </body>
+        </body>
+      </GlobalContextProvider>
     </html>
   );
 }

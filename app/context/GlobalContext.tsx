@@ -1,34 +1,29 @@
-import { isProduct } from '@/helpers/isProduct';
-import { IProduct } from '@/helpers/types';
 import { createContext, useContext, useState, useEffect } from 'react';
+import { validateJwt } from '../database/user/jwt';
 
 type Props = { children: React.ReactElement };
 
 const GlobalContext = createContext<{
-  products: IProduct[];
+  loggedIn: boolean;
 }>({
-  products: [],
+  loggedIn: false,
 });
 
 export const useGlobalContext = () => useContext(GlobalContext);
 
 const GlobalContextProvider = ({ children }: Props) => {
-  const [products, setProducts] = useState<IProduct[]>([]);
+  const [loggedIn, setLoggedIn] = useState<boolean>(false);
 
   useEffect(() => {
-    const getProducts = async () => {
-      const res = await fetch('/api/getProducts');
-      const { products: produ } = await res.json();
-      const productsFromJson = produ.filter(isProduct);
-      const _idToString = productsFromJson.map((prod: IProduct) => {
-        return { ...prod, _id: String(prod._id) };
-      });
-      setProducts(_idToString);
+    const checkAuth = async () => {
+      const isJwtValid = await validateJwt();
+      if (isJwtValid) return setLoggedIn(true);
+      return setLoggedIn(false);
     };
-    getProducts();
+    checkAuth();
   }, []);
   return (
-    <GlobalContext.Provider value={{ products }}>
+    <GlobalContext.Provider value={{ loggedIn }}>
       {children}
     </GlobalContext.Provider>
   );

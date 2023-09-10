@@ -1,11 +1,14 @@
 'use client';
 import AuthContainer from '@/app/components/auth/AuthContainer';
+import Error from '@/app/components/form/Error';
 import Form from '@/app/components/form/Form';
 import FormInput from '@/app/components/form/FormInput';
 import Button from '@/app/components/generalElements/Button';
-import { RegisterForm, registerUser } from '@/app/database/registerUser';
+import { RegisterForm, registerUser } from '@/app/database/user/registerUser';
+import { addToCart } from '@/helpers/cookiesHelper';
 import Link from 'next/link';
-import React, { useState } from 'react';
+import { useRouter } from 'next/navigation';
+import { useState } from 'react';
 
 const RegisterPage = () => {
   const [form, setForm] = useState<RegisterForm>({
@@ -14,6 +17,8 @@ const RegisterPage = () => {
     age: '',
     password: '',
   });
+  const [err, setErr] = useState<string | null>('');
+  const router = useRouter();
 
   const handleChange = (name: string, value: string) => {
     setForm((prev) => ({
@@ -23,7 +28,13 @@ const RegisterPage = () => {
   };
 
   const handleSubmit = async () => {
-    await registerUser(form);
+    setErr(null);
+    const res = await registerUser(form);
+    if (typeof res === 'object' && 'message' in res && res!.message) {
+      return setErr(res!.message || null);
+    }
+    addToCart(res, 'jwt');
+    router.push('/');
   };
 
   return (
@@ -62,6 +73,7 @@ const RegisterPage = () => {
             onChange={handleChange}
             value={form.password}
           />
+          {err && <Error message={err} />}
           <div className='flex justify-between items-center'>
             <Button>Register</Button>
             <Link className='text-blue-500 hover:underline' href='/auth/login'>

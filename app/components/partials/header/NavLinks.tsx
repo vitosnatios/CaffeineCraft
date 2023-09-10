@@ -1,12 +1,14 @@
+import GlobalContextProvider from '@/app/context/GlobalContext';
 import Link from 'next/link';
 import React from 'react';
+import LoginOrProfileLink from './LoginOrProfileLink';
 
 const NavLinks = () => {
   return (
     <>
-      <Link href='/auth' className='text-gray-300 hover:text-white block'>
-        Login / Profile
-      </Link>
+      <GlobalContextProvider>
+        <LoginOrProfileLink />
+      </GlobalContextProvider>
       <Link href='/shop' className='text-gray-300 hover:text-white block'>
         Shop
       </Link>
