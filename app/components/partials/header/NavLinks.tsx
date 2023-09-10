@@ -9,7 +9,7 @@ const NavLinks = (props: Props) => {
       <Link href='/login' className='text-gray-300 hover:text-white block'>
         Login / Profile
       </Link>
-      <Link href='/login' className='text-gray-300 hover:text-white block'>
+      <Link href='/shop' className='text-gray-300 hover:text-white block'>
         Shop
       </Link>
       <Link href='/cart' className='text-gray-300 hover:text-white block'>

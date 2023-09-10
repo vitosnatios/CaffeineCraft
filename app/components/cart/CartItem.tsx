@@ -1,3 +1,4 @@
+import GlobalContextProvider from '@/app/context/GlobalContext';
 import Image from 'next/image';
 import React from 'react';
 

@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import React from 'react';
 
 type Props = {};
@@ -7,35 +8,39 @@ const Footer = (props: Props) => {
     <footer className='bg-gray-900 text-white py-12'>
       <div className='container mx-auto flex flex-col md:flex-row justify-between items-center'>
         <div className='md:w-1/2 text-center md:text-left mb-6 md:mb-0'>
-          <h2 className='text-3xl font-bold'>CaffeineCraft</h2>
+          <Link href='/'>
+            <h2 className='text-3xl font-bold'>CaffeineCraft</h2>
+          </Link>
           <p className='mt-4 text-gray-300'>
             Discover the world&apos;s finest coffee beans and brew your perfect
             cup of coffee.
           </p>
         </div>
+
         <div className='md:w-1/2 flex justify-center md:justify-end'>
-          <ul className='md:flex space-x-6'>
+          <ul className='md:flex gap-3'>
             <li>
-              <a href='/about' className='text-gray-300 hover:text-white'>
+              <Link href='/about' className='text-gray-300 hover:text-white'>
                 About Us
-              </a>
+              </Link>
             </li>
             <li>
-              <a href='/contact' className='text-gray-300 hover:text-white'>
+              <Link href='/contact' className='text-gray-300 hover:text-white'>
                 Contact Us
-              </a>
+              </Link>
             </li>
             <li>
-              <a href='/privacy' className='text-gray-300 hover:text-white'>
+              <Link href='/privacy' className='text-gray-300 hover:text-white'>
                 Privacy Policy
-              </a>
+              </Link>
             </li>
           </ul>
         </div>
       </div>
       <div className='mt-8 text-center'>
         <p className='text-gray-400'>
-          &copy; {new Date().getFullYear()} CaffeineCraft. All rights reserved.
+          VitosDeveloper &copy; {new Date().getFullYear()} CaffeineCraft. All
+          rights reserved.
         </p>
       </div>
     </footer>
