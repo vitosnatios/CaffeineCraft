@@ -39,8 +39,8 @@ const Banner = (props: Props) => {
           src='/coffe-banner.webp'
           alt='Coffee Banner'
           className='rounded-lg shadow-md'
-          width='500'
-          height='500'
+          width='1080'
+          height='1080'
         />
       </div>
     </div>
