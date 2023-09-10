@@ -44,11 +44,3 @@ export const generateStaticParams = async () => {
 };
 
 export const dynamicParams = false;
-
-// const getStaticProps: GetStaticProps = () => {
-//   return {
-//     props: {
-
-//     }
-//   }
-// }
