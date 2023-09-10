@@ -1,5 +1,4 @@
-import React from 'react';
-import CoffeCard from '../components/shop/CoffeCard';
+import CoffeeCard from '../components/shop/CoffeCard';
 import { getAllProducts } from '../database/getAllProducts';
 import { IProduct } from '@/helpers/types';
 
@@ -12,7 +11,7 @@ const ShopPage = async () => {
         <h1 className='text-3xl font-semibold text-gray-800 mb-4'>Shop</h1>
         <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6'>
           {products?.map((product: IProduct) => (
-            <CoffeCard key={product.id} product={product} />
+            <CoffeeCard key={product.id} product={product} />
           ))}
         </div>
       </div>

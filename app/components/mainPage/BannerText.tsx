@@ -7,8 +7,8 @@ const BannerText = () => {
         Welcome to CaffeineCraft
       </h2>
       <p className='text-lg text-gray-600 mb-2'>
-        Discover the world&apos;s finest coffee beans and brew your perfect cup
-        of coffee.
+        Discover the world&apos;s finest coffeee beans and brew your perfect cup
+        of coffeee.
       </p>
       <p className='text-lg text-gray-600 mb-2'>
         Lorem ipsum dolor sit amet consectetur adipisicing elit. Totam ipsa cum

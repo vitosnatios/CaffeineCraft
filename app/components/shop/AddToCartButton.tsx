@@ -9,16 +9,16 @@ const AddToCartButton = ({ product }: { product: IProduct }) => {
 
   const handleClick = () => {
     if (buttonText !== 'Already selected') {
-      addOneToCart(price, image, imgWidth, imgHeight, 'cart');
+      addOneToCart(name, price, image, imgWidth, imgHeight, 'cart');
       setButtonText('Already selected');
     }
   };
 
   useEffect(() => {
     setButtonText(
-      hasOnCookiesAlready(image, 'cart') ? 'Already selected' : 'Add to Cart'
+      hasOnCookiesAlready(name, 'cart') ? 'Already selected' : 'Add to Cart'
     );
-  }, [image]);
+  }, [name]);
 
   return (
     <button

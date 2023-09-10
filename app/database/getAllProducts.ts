@@ -1,12 +1,10 @@
 import { isProduct } from '@/helpers/isProduct';
-import { connectToDatabase } from './connect';
+import { getCollection } from './connect';
 import { IProduct } from '@/helpers/types';
 
 export const getAllProducts = async (): Promise<IProduct[]> => {
   try {
-    const client = await connectToDatabase();
-    const db = client.db();
-    const collection = db.collection('products');
+    const collection = await getCollection('products');
     const products = await collection.find({}).toArray();
     const productsFromJson = products.filter(isProduct);
     const _idToString = productsFromJson.map((prod: IProduct) => {

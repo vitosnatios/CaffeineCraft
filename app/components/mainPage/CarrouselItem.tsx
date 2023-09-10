@@ -13,19 +13,19 @@ type Props = {
 const CarrouselItem = ({ image, imgWidth, imgHeight, name, price }: Props) => {
   return (
     <div>
-      <Link href={`/coffe/${image}`}>
+      <Link href={`/coffee/${image}`}>
         <div className='h-60 w-auto overflow-hidden'>
           <Image
             width={imgWidth}
             height={imgHeight}
-            src={`/coffes/${image}.jpg`}
+            src={`/coffees/${image}.jpg`}
             alt={name}
             className={`relative bottom-${
-              image === 'maragogipe' ? '40' : imgHeight > 700 ? '80' : '0'
+              image === 'maragogipe' ? '40' : imgHeight > 500 ? '80' : '0'
             }`}
+            loading='eager'
           />
         </div>
-
         <div className='flex justify-between'>
           <span>{name}</span>
           <span>R${price.toFixed(2)}/Kg</span>

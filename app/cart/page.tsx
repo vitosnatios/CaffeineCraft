@@ -18,9 +18,9 @@ const CartPage = () => {
   };
 
   const setQuantityAndCartItens = () => {
-    const coffes = getCookies('cart');
-    setCartItems(coffes);
-    coffes.forEach(({ image, quantity }) => {
+    const coffees = getCookies('cart');
+    setCartItems(coffees);
+    coffees.forEach(({ image, quantity }) => {
       setItensQuantity((prev) => {
         return { ...prev, [image]: quantity };
       });

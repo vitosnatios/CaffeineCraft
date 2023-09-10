@@ -12,8 +12,8 @@ const Footer = (props: Props) => {
             <h2 className='text-3xl font-bold'>CaffeineCraft</h2>
           </Link>
           <p className='mt-4 text-gray-300'>
-            Discover the world&apos;s finest coffee beans and brew your perfect
-            cup of coffee.
+            Discover the world&apos;s finest coffeee beans and brew your perfect
+            cup of coffeee.
           </p>
         </div>
 

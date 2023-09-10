@@ -21,6 +21,7 @@ const addToCart = (toAdd: unknown, field: string) => {
 };
 
 export const addOneToCart = (
+  name: string,
   price: number,
   image: string,
   imgWidth: number,
@@ -33,7 +34,7 @@ export const addOneToCart = (
   if (!hasAlready) {
     const updatedCookie = [
       ...prevCookies,
-      { name: image, price, image, imgWidth, imgHeight, quantity },
+      { name, price, image, imgWidth, imgHeight, quantity },
     ];
     addToCart(updatedCookie, field);
   }
@@ -58,14 +59,14 @@ export const changeQuantityFromAItem = (
     ({ name: prodName }) => prodName === name
   );
   if (itemToChangeQuantity) {
-    const updatedCookies = prevCookies.map((coffe) => {
-      if (coffe.name === name) {
+    const updatedCookies = prevCookies.map((coffee) => {
+      if (coffee.name === name) {
         return {
-          ...coffe,
+          ...coffee,
           quantity,
         };
       }
-      return coffe;
+      return coffee;
     });
     addToCart(updatedCookies, 'cart');
   }
