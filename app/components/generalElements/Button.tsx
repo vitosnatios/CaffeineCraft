@@ -19,7 +19,7 @@ const Button = ({
   const handleClick = () => {
     if (onClick) onClick();
     if (trigger && delay)
-      return setTimeout(() => setGlobalTrigger((prev) => !prev), 3000);
+      return setTimeout(() => setGlobalTrigger((prev) => !prev), 2000);
     if (trigger) setGlobalTrigger((prev) => !prev);
   };
 

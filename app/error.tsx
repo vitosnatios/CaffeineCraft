@@ -5,7 +5,7 @@ import Button from './components/generalElements/Button';
 
 export default function Error({ error }: { error: Error }) {
   return (
-    <div className='flex flex-col items-center justify-center min-h-screen bg-gradient-to-b'>
+    <div className='flex flex-col items-center justify-center self-center mt-20'>
       <div className='text-red-400 text-center'>
         <h1 className='text-4xl font-semibold mb-2'>
           Oops! Something went wrong.
