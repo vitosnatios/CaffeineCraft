@@ -35,7 +35,7 @@ const AddToCartButton = ({ coffee }: { coffee: IProduct }) => {
   return buttonText === 'Add to Cart' ? (
     <>
       <p className='text-xl font-semibold text-gray-800 mb-4'>
-        Price: ${total.toFixed(2)}
+        Price: R${total.toFixed(2)}
       </p>
       <div className='flex items-center space-x-4'>
         <input

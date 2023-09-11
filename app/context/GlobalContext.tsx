@@ -28,8 +28,6 @@ const GlobalContextProvider = ({ children }: Props) => {
   const [globalTrigger, setGlobalTrigger] = useState<boolean>(false);
 
   useEffect(() => {
-    console.log('global context');
-
     const checkAuth = async () => {
       const isJwtValid = await validateJwt();
       if (isJwtValid) return setLoggedIn(isJwtValid);

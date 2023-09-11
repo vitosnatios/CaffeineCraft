@@ -16,7 +16,6 @@ const RegisterPage = () => {
       email: formdata.get('email'),
       password: formdata.get('password'),
     };
-    console.log(form);
 
     const res = await registerUser(form);
     if (typeof res === 'object' && 'message' in res && res!.message) {

@@ -8,12 +8,12 @@ import Link from 'next/link';
 import Button from '../components/generalElements/Button';
 import { buyCoffees } from '@/helpers/buyCoffees';
 import { redirect } from 'next/navigation';
+import CheckoutItem from '../components/checkout/CheckoutItem';
 
-type Props = {};
-
-const CheckoutPage = async (props: Props) => {
+const CheckoutPage = async () => {
   const user = await getUserByJwt();
   const carCache = cookies().get('cart');
+
   if (
     !carCache ||
     ('value' in carCache && !carCache.value) ||
@@ -42,37 +42,19 @@ const CheckoutPage = async (props: Props) => {
       <h1 className='text-3xl font-semibold text-gray-800 mb-4'>Checkout</h1>
       <div className='grid gap-4 md:grid-cols-2'>
         {cartItems.map((item: ICartProduct, index: number) => (
-          <div key={index} className='bg-white p-4 rounded-lg shadow-md'>
-            <div className='flex items-center justify-between'>
-              <div className='w-16 h-16 relative'>
-                <Image
-                  src={`/coffees/${item.image}.jpg`}
-                  alt={item.name}
-                  layout='fill'
-                  objectFit='cover'
-                />
-              </div>
-              <div className='ml-4'>
-                <h2 className='text-xl font-semibold text-gray-800'>
-                  {item.name}
-                </h2>
-                <p className='text-gray-600'>Quantity: {item.quantity}</p>
-                <p className='text-gray-600'>Price: ${item.price}</p>
-              </div>
-            </div>
-          </div>
+          <CheckoutItem key={index} item={item} />
         ))}
       </div>
       <div className='mt-8 text-xl font-semibold text-gray-800'>
-        Total Price: ${totalPrice}
+        Total Price: R${totalPrice}
       </div>
       <div className='mt-8'>
         <form action={handleBuy}>
           <Button>Proceed to Payment (Buy)</Button>
         </form>
-        <Link href='/' className='ml-4 text-gray-600 hover:text-blue-500'>
+        <a href='/' className='ml-4 text-gray-600 hover:text-blue-500'>
           Continue Shopping
-        </Link>
+        </a>
       </div>
     </div>
   );

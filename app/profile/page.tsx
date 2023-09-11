@@ -1,5 +1,8 @@
+import HistoryItem from '../components/profile/HistoryItem';
 import ProfileLogoutButton from '../components/profile/ProfileLogoutButton';
 import { getUserByJwt } from '../database/user/getUserByJwt';
+
+type Prod = { name: string; price: number; quantity: number };
 
 const ProfilePage = async () => {
   const user = await getUserByJwt();
@@ -20,11 +23,20 @@ const ProfilePage = async () => {
       <div className='bg-white rounded-lg shadow-md p-6'>
         <h2 className='text-xl font-semibold mb-2'>Coffee History</h2>
         <ul>
-          {/* {user.history?.map((coffee, index) => (
-            <li key={index} className='mb-2'>
-              {coffee.name} - ${coffee.price}
-            </li>
-          ))} */}
+          {user.history?.map(({ products, totalPrice }: any) => {
+            return (
+              <>
+                <li className='mb-4 rounded-lg'>
+                  {products.map((prod: Prod, index: number) => (
+                    <HistoryItem key={index} prod={prod} />
+                  ))}
+                  <p className='text-lg font-semibold p-3 bg-white shadow-md'>
+                    Total: R${totalPrice.toFixed(2)}
+                  </p>
+                </li>
+              </>
+            );
+          })}
         </ul>
       </div>
     </div>

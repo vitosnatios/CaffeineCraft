@@ -53,11 +53,11 @@ const CartPage = () => {
       </ul>
       {cartItems.length ? (
         <>
-          <p className='text-xl mt-4'>Total: ${total.toFixed(2)}</p>
+          <p className='text-xl mt-4'>Total: R${total.toFixed(2)}</p>
           {loggedIn ? (
-            <a href='/checkout'>
+            <Link href='/checkout'>
               <Button>Proceed to checkout</Button>
-            </a>
+            </Link>
           ) : (
             <Link href='/auth/login'>
               <Button>

@@ -34,7 +34,7 @@ const CartItem = ({
         <Link href={`/coffee/${image}`}>
           <h3 className='text-lg font-semibold'>{name}</h3>
         </Link>
-        <p className='text-gray-600'>Price: ${price.toFixed(2)}</p>
+        <p className='text-gray-600'>Price: R${price.toFixed(2)}</p>
 
         <div className='flex items-center space-x-2'>
           <input

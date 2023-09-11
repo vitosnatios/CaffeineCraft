@@ -1,6 +1,7 @@
 'use client';
 import Link from 'next/link';
 import React from 'react';
+import Button from './components/generalElements/Button';
 
 export default function Error({ error }: { error: Error }) {
   return (
@@ -16,7 +17,7 @@ export default function Error({ error }: { error: Error }) {
           className='text-blue-400 text-lg font-medium hover:underline'
           href='/'
         >
-          Back to Home
+          <Button trigger>Back to Home</Button>
         </Link>
       </div>
     </div>

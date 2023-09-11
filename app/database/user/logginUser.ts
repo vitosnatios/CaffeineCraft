@@ -10,10 +10,10 @@ export const logginUser = async (
 ) => {
   const collection = await getCollection('users');
   const foundUser = await collection.findOne({ email });
-  if (!foundUser) return { message: 'User not found.' };
+  if (!foundUser) throw new Error('User not found.');
   bcrypt.compareSync(password, foundUser.password);
   const passwordMatch = bcrypt.compareSync(password, foundUser.password);
-  if (!passwordMatch) return { message: 'Wrong password.' };
+  if (!passwordMatch) throw new Error('Wrong password.');
   const jwt = createJwt(foundUser._id.toString());
   cookies().set('jwt', jwt);
 };
