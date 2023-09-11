@@ -4,31 +4,29 @@ const bcrypt = require('bcrypt');
 import { getCollection } from '../connect';
 import { createJwt } from './jwt';
 
-export type RegisterForm = {
-  name: string;
-  age: string;
-  email: string;
-  password: string;
-};
-
-const hashPassword = (password: string) => {
+const hashPassword = (password: FormDataEntryValue | null) => {
   const saltRounds = process.env.SALT!;
   const salt = bcrypt.genSaltSync(parseInt(saltRounds));
   const hashedPass = bcrypt.hashSync(password, salt);
   return hashedPass;
 };
 
-export const registerUser = async (form: RegisterForm) => {
+export const registerUser = async (form: {
+  [key: string]: FormDataEntryValue | null;
+}) => {
   const { name, age, email, password: rawPassword } = form;
+  if (!name || !age || !email || !rawPassword) {
+    throw new Error('Some inputs are missing.');
+  }
   const inputMissing =
     !name.length ||
     !age.length ||
     !email.length ||
     !rawPassword.length ||
-    name.trim() === '' ||
-    age.trim() === '' ||
-    email.trim() === '' ||
-    rawPassword.trim() === '';
+    String(name).trim() === '' ||
+    String(age).trim() === '' ||
+    String(email).trim() === '' ||
+    String(rawPassword).trim() === '';
   try {
     if (inputMissing) {
       throw new Error('Some inputs are missing.');

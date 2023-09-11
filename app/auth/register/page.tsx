@@ -1,79 +1,55 @@
-'use client';
 import AuthContainer from '@/app/components/auth/AuthContainer';
-import Error from '@/app/components/form/Error';
 import Form from '@/app/components/form/Form';
 import FormInput from '@/app/components/form/FormInput';
 import Button from '@/app/components/generalElements/Button';
-import { RegisterForm, registerUser } from '@/app/database/user/registerUser';
+import { registerUser } from '@/app/database/user/registerUser';
 import { addToCart } from '@/helpers/cookiesHelper';
+import { cookies } from 'next/headers';
 import Link from 'next/link';
-import { useRouter } from 'next/navigation';
-import { useState } from 'react';
+import { redirect } from 'next/navigation';
 
 const RegisterPage = () => {
-  const [err, setErr] = useState<string | null>('');
-  const [form, setForm] = useState<RegisterForm>({
-    name: '',
-    email: '',
-    age: '',
-    password: '',
-  });
-  const router = useRouter();
+  const handleSubmit = async (formdata: FormData) => {
+    'use server';
+    const form = {
+      name: formdata.get('name'),
+      age: formdata.get('age'),
+      email: formdata.get('email'),
+      password: formdata.get('password'),
+    };
+    console.log(form);
 
-  const handleChange = (name: string, value: string) => {
-    setForm((prev) => ({
-      ...prev,
-      [name]: value,
-    }));
-  };
-
-  const handleSubmit = async () => {
-    setErr(null);
     const res = await registerUser(form);
     if (typeof res === 'object' && 'message' in res && res!.message) {
-      return setErr(res!.message || null);
+      throw new Error(res!.message || null);
     }
-    addToCart(res, 'jwt', false);
-    return window.location.replace('/');
+    cookies().set('jwt', res);
+    return redirect('/profile');
   };
 
   return (
     <AuthContainer>
-      <Form handleSubmit={handleSubmit} name='Register'>
+      <Form action={handleSubmit} name='Register'>
         <>
           <FormInput
             label='Name'
             name='name'
             type='text'
             placeholder='John Doe'
-            onChange={handleChange}
-            value={form.name}
           />
-          <FormInput
-            label='Age'
-            name='age'
-            type='number'
-            placeholder='30'
-            onChange={handleChange}
-            value={form.age}
-          />
+          <FormInput label='Age' name='age' type='number' placeholder='30' />
           <FormInput
             label='Email Address'
             name='email'
             type='email'
             placeholder='you@example.com'
-            onChange={handleChange}
-            value={form.email}
           />
           <FormInput
             label='Password'
             name='password'
             type='password'
             placeholder='********'
-            onChange={handleChange}
-            value={form.password}
           />
-          {err && <Error message={err} />}
           <div className='flex justify-between items-center'>
             <Button>Register</Button>
             <Link className='text-blue-500 hover:underline' href='/auth/login'>

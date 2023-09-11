@@ -32,8 +32,7 @@ const CheckoutPage = async (props: Props) => {
     'use server';
     const res = await buyCoffees(cartItems, totalPrice);
     if (res) {
-      // cookies().delete('cart');
-      // window.location.replace('/profile');
+      cookies().delete('cart');
       redirect('/profile');
     }
   };

@@ -4,7 +4,10 @@ import { getCollection } from '../connect';
 import { cookies } from 'next/headers';
 import { createJwt } from './jwt';
 
-export const logginUser = async (email: string, password: string) => {
+export const logginUser = async (
+  email: FormDataEntryValue | null,
+  password: FormDataEntryValue | null
+) => {
   const collection = await getCollection('users');
   const foundUser = await collection.findOne({ email });
   if (!foundUser) return { message: 'User not found.' };
