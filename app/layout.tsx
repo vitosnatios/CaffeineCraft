@@ -15,6 +15,7 @@ export default function RootLayout({
     <html lang='en'>
       <title>CaffeineCraft</title>
       <meta name='description' content='Ecommerce Challenge' />
+      <link rel='icon' href='/favicon.ico' sizes='any' />
       <GlobalContextProvider>
         <body className={inter.className}>
           <div className='flex flex-col min-h-screen'>
