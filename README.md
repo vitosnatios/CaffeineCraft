@@ -1,3 +1,5 @@
+https://caffeine-craft.vercel.app/
+
 This is project was meant to be made in a few days (3 - 4), i made it from zero, used Typescript, NextJS, Tailwind, bcrypt, jsonwebtoken and some other stuff.
 
 ## Getting Started
