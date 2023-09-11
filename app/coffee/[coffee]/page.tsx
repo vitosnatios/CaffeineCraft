@@ -13,7 +13,7 @@ const CoffeePage = async ({ params }: Props) => {
   const { image, price, description, name, imgWidth, imgHeight } = coffee;
 
   return (
-    <div className='bg-gray-100 py-8 px-4 md:px-16'>
+    <div className='container mx-auto py-8 bg-gray-100'>
       <div className='container mx-auto flex flex-col md:flex-row items-center gap-5'>
         <div className='md:w-1/2'>
           <Image

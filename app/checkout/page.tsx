@@ -38,7 +38,7 @@ const CheckoutPage = async () => {
   };
 
   return (
-    <div className='bg-gray-100 py-8 px-4 md:px-16'>
+    <div className='container mx-auto py-8 bg-gray-100'>
       <h1 className='text-3xl font-semibold text-gray-800 mb-4'>Checkout</h1>
       <div className='grid gap-4 md:grid-cols-2'>
         {cartItems.map((item: ICartProduct, index: number) => (

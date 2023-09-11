@@ -38,7 +38,7 @@ const CartPage = () => {
   );
 
   return (
-    <section className='bg-gray-100 py-8 px-4 md:px-16'>
+    <section className='container mx-auto py-8 bg-gray-100'>
       <h1 className='text-3xl font-semibold text-gray-800 mb-4'>Your Cart</h1>
       <ul className='grid gap-5 md:grid-cols-1 lg:grid-cols-2'>
         {cartItems.map((product, index) => (

@@ -9,7 +9,7 @@ const ProfilePage = async () => {
 
   if (!user) throw new Error('You are not logged in.');
   return (
-    <div className='bg-gray-100 p-8'>
+    <div className='container mx-auto py-8 bg-gray-100'>
       <div className='flex justify-between items-center'>
         <h1 className='text-3xl font-semibold mb-4'>Profile</h1>
         <ProfileLogoutButton />

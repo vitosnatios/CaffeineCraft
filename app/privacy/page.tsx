@@ -4,7 +4,7 @@ type Props = {};
 
 const PrivacyPage = (props: Props) => {
   return (
-    <div className='bg-gray-100 p-8'>
+    <div className='container mx-auto py-8 bg-gray-100'>
       <h1 className='text-3xl font-semibold text-gray-800 mb-4'>
         Privacy Policy
       </h1>
