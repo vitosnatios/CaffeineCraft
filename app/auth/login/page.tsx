@@ -35,7 +35,9 @@ const LoginPage = () => {
             placeholder='********'
           />
           <div className='flex justify-between items-center'>
-            <Button>Login</Button>
+            <Button trigger delay>
+              Login
+            </Button>
             <Link
               className='text-blue-500 hover:underline'
               href='/auth/register'

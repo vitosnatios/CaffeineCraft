@@ -3,13 +3,17 @@ import React from 'react';
 import Button from '../generalElements/Button';
 import { deleteCookie } from 'cookies-next';
 import { useGlobalContext } from '@/app/context/GlobalContext';
+import { useRouter } from 'next/navigation';
 
 const ProfileLogoutButton = () => {
-  const { setLoggedIn } = useGlobalContext();
+  const { setLoggedIn, setGlobalTrigger } = useGlobalContext();
+  const route = useRouter();
+
   const handleClick = () => {
     deleteCookie('jwt');
     setLoggedIn(false);
-    return window.location.replace('/');
+    setGlobalTrigger((prev) => !prev);
+    route.push('/');
   };
 
   return <Button onClick={handleClick}>Logout</Button>;

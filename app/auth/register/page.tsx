@@ -3,7 +3,6 @@ import Form from '@/app/components/form/Form';
 import FormInput from '@/app/components/form/FormInput';
 import Button from '@/app/components/generalElements/Button';
 import { registerUser } from '@/app/database/user/registerUser';
-import { addToCart } from '@/helpers/cookiesHelper';
 import { cookies } from 'next/headers';
 import Link from 'next/link';
 import { redirect } from 'next/navigation';
@@ -51,7 +50,9 @@ const RegisterPage = () => {
             placeholder='********'
           />
           <div className='flex justify-between items-center'>
-            <Button>Register</Button>
+            <Button trigger delay>
+              Register
+            </Button>
             <Link className='text-blue-500 hover:underline' href='/auth/login'>
               Already have an account? Login
             </Link>
