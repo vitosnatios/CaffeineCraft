@@ -3,6 +3,7 @@ import Link from 'next/link';
 
 const LoginOrProfileLink = () => {
   const { loggedIn } = useGlobalContext();
+
   return (
     <Link
       href={loggedIn ? '/profile' : '/auth'}

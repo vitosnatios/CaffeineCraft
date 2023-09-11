@@ -2,6 +2,7 @@
 import { addOneToCart, hasOnCookiesAlready } from '@/helpers/cookiesHelper';
 import { IProduct } from '@/helpers/types';
 import { useState, useEffect } from 'react';
+import Button from '../generalElements/Button';
 
 const AddToCartButton = ({ product }: { product: IProduct }) => {
   const { name, price, image, imgWidth, imgHeight } = product;
@@ -20,14 +21,7 @@ const AddToCartButton = ({ product }: { product: IProduct }) => {
     );
   }, [name]);
 
-  return (
-    <button
-      onClick={handleClick}
-      className='bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600 transition duration-300'
-    >
-      {buttonText}
-    </button>
-  );
+  return <Button onClick={handleClick}>{buttonText}</Button>;
 };
 
 export default AddToCartButton;

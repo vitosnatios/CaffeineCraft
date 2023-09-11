@@ -20,3 +20,5 @@ export async function GET(request: Request) {
     return NextResponse.json({ message: 'Error while trying to verify jwt' });
   }
 }
+
+export const dynamic = 'force-dynamic';

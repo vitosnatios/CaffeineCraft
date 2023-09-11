@@ -8,11 +8,11 @@ const Banner = () => {
       <BannerText />
       <div className='self-center'>
         <Image
-          src='/coffee-banner.webp'
+          src='/coffeebanner.jpg'
           alt='coffeee Banner'
-          className='rounded-lg shadow-md'
-          width='1080'
-          height='1080'
+          className='rounded-lg'
+          width='803'
+          height='766'
         />
       </div>
     </div>

@@ -4,7 +4,7 @@ import { getUserByJwt } from '../database/user/getUserByJwt';
 const ProfilePage = async () => {
   const user = await getUserByJwt();
 
-  if (!user) throw new Error('Você está deslogado.');
+  if (!user) throw new Error('You are not logged in.');
   return (
     <div className='bg-gray-100 p-8'>
       <div className='flex justify-between items-center'>

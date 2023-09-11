@@ -1,7 +1,8 @@
 import Banner from './components/mainPage/Banner';
-import dynamic from 'next/dynamic';
+import { default as dyna } from 'next/dynamic';
 import { getAllProducts } from './database/product/getAllProducts';
-const FeaturedItemsCarousel = dynamic(
+import Header from './components/partials/Header';
+const FeaturedItemsCarousel = dyna(
   () => import('./components/mainPage/FeaturedItemsCarousel'),
   { ssr: false }
 );

@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import React from 'react';
 
 const BannerText = () => {
@@ -21,12 +22,12 @@ const BannerText = () => {
         adipisci ullam, distinctio dolorem, nesciunt, dolor eius ea id rem fugit
         exercitationem totam natus aliquid voluptates reiciendis. Soluta, iste.
       </p>
-      <a
+      <Link
         href='/shop'
         className='bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600 transition duration-300'
       >
         Shop Now
-      </a>
+      </Link>
     </div>
   );
 };
