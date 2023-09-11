@@ -14,15 +14,13 @@ const CarrouselItem = ({ image, imgWidth, imgHeight, name, price }: Props) => {
   return (
     <div>
       <Link href={`/coffee/${image}`}>
-        <div className='h-60 w-auto overflow-hidden'>
+        <div className='h-60 w-auto overflow-hidden flex'>
           <Image
             width={imgWidth}
             height={imgHeight}
             src={`/coffees/${image}.jpg`}
             alt={name}
-            className={`relative bottom-${
-              image === 'maragogipe' ? '40' : imgHeight > 500 ? '80' : '0'
-            }`}
+            className='self-center'
             loading='eager'
           />
         </div>

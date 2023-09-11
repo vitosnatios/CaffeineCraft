@@ -1,5 +1,5 @@
-import { NextResponse } from 'next/server';
 const jwt = require('jsonwebtoken');
+import { NextResponse } from 'next/server';
 
 const jwtSecret = process.env.JWT_SECRET;
 

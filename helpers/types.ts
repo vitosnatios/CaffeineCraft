@@ -19,3 +19,18 @@ export interface ICartProduct {
   imgWidth: number;
   imgHeight: number;
 }
+
+export interface IProductHistory {
+  totalPrice: number;
+  products: {
+    name: string;
+    price: number;
+    quantity: number;
+  };
+}
+export interface IUser {
+  name: string;
+  age: string;
+  email: string;
+  history: IProductHistory[];
+}

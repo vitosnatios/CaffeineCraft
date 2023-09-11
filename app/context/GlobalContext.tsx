@@ -4,7 +4,7 @@ import { validateJwt } from '../database/user/jwt';
 type Props = { children: React.ReactElement };
 
 const GlobalContext = createContext<{
-  loggedIn: boolean;
+  loggedIn: boolean | string;
 }>({
   loggedIn: false,
 });
@@ -12,12 +12,12 @@ const GlobalContext = createContext<{
 export const useGlobalContext = () => useContext(GlobalContext);
 
 const GlobalContextProvider = ({ children }: Props) => {
-  const [loggedIn, setLoggedIn] = useState<boolean>(false);
+  const [loggedIn, setLoggedIn] = useState<boolean | string>(false);
 
   useEffect(() => {
     const checkAuth = async () => {
       const isJwtValid = await validateJwt();
-      if (isJwtValid) return setLoggedIn(true);
+      if (isJwtValid) return setLoggedIn(isJwtValid);
       return setLoggedIn(false);
     };
     checkAuth();

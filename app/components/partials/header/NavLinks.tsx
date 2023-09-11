@@ -6,9 +6,7 @@ import LoginOrProfileLink from './LoginOrProfileLink';
 const NavLinks = () => {
   return (
     <>
-      <GlobalContextProvider>
-        <LoginOrProfileLink />
-      </GlobalContextProvider>
+      <LoginOrProfileLink />
       <Link href='/shop' className='text-gray-300 hover:text-white block'>
         Shop
       </Link>

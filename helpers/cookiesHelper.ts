@@ -4,6 +4,7 @@ import { ICartProduct } from './types';
 
 export const getJwtCookie = () => {
   const jwtCookie = getCookie('jwt');
+
   if (jwtCookie) {
     const token = JSON.parse(jwtCookie);
     return token;
