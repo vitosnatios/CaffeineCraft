@@ -1,4 +1,3 @@
-'use client';
 import Link from 'next/link';
 import { useState, useEffect } from 'react';
 import { FaBars } from 'react-icons/fa';
@@ -8,7 +7,7 @@ const Header = () => {
   const [isMenuOpen, setMenuOpen] = useState(false);
 
   const toggleMenu = () => {
-    setMenuOpen(!isMenuOpen);
+    if (window.innerWidth < 768) setMenuOpen(!isMenuOpen);
   };
 
   const handleResize = () => {
@@ -44,8 +43,9 @@ const Header = () => {
 
         <nav
           className={`${
-            isMenuOpen ? 'opacity-100' : 'opacity-0'
+            isMenuOpen ? 'opacity-100' : 'opacity-0 hidden'
           } absolute right-0 top-full md:relative md:flex md:space-x-4 mt-4 md:mt-0 bg-gray-900 p-4 rounded-lg shadow-lg z-10`}
+          onClick={toggleMenu}
         >
           <NavLinks />
         </nav>

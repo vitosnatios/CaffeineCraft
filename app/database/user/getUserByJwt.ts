@@ -9,10 +9,7 @@ export const getUserByJwt = async () => {
   const nextCookies = cookies();
   const tokenFromCookie = nextCookies.get('jwt');
   if (!tokenFromCookie) return false;
-  const decoded = await jwt.verify(
-    JSON.parse(tokenFromCookie.value),
-    jwtSecret
-  );
+  const decoded = await jwt.verify(tokenFromCookie.value, jwtSecret);
   if (!decoded) return false;
   const { id: userId } = decoded.data;
   const usersCollection = await getCollection('users');

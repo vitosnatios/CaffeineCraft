@@ -1,12 +1,15 @@
 'use client';
 import AuthContainer from '@/app/components/auth/AuthContainer';
+import Error from '@/app/components/form/Error';
 import Form from '@/app/components/form/Form';
 import FormInput from '@/app/components/form/FormInput';
 import Button from '@/app/components/generalElements/Button';
+import { logginUser } from '@/app/database/user/logginUser';
 import Link from 'next/link';
-import React, { useState } from 'react';
+import { useState } from 'react';
 
 const LoginPage = () => {
+  const [err, setErr] = useState<string | null>('');
   const [form, setForm] = useState<{ [key: string]: string }>({
     email: '',
     password: '',
@@ -20,7 +23,12 @@ const LoginPage = () => {
   };
 
   const handleSubmit = () => {
-    console.log(form);
+    setErr(null);
+    const res: any = logginUser(form.email, form.password);
+    if (typeof res === 'object' && 'message' in res && res!.message) {
+      return setErr(res!.message || null);
+    }
+    return window.location.replace('/');
   };
 
   return (
@@ -52,6 +60,7 @@ const LoginPage = () => {
               Don&apos;t have an account? Register
             </Link>
           </div>
+          {err && <Error message={err} />}
         </>
       </Form>
     </AuthContainer>

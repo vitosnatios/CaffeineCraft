@@ -1,10 +1,7 @@
 import { useGlobalContext } from '@/app/context/GlobalContext';
 import Link from 'next/link';
-import React from 'react';
 
-type Props = {};
-
-const LoginOrProfileLink = (props: Props) => {
+const LoginOrProfileLink = () => {
   const { loggedIn } = useGlobalContext();
   return (
     <Link

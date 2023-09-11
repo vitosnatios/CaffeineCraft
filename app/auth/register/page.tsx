@@ -11,13 +11,13 @@ import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 
 const RegisterPage = () => {
+  const [err, setErr] = useState<string | null>('');
   const [form, setForm] = useState<RegisterForm>({
     name: '',
     email: '',
     age: '',
     password: '',
   });
-  const [err, setErr] = useState<string | null>('');
   const router = useRouter();
 
   const handleChange = (name: string, value: string) => {
@@ -33,8 +33,8 @@ const RegisterPage = () => {
     if (typeof res === 'object' && 'message' in res && res!.message) {
       return setErr(res!.message || null);
     }
-    addToCart(res, 'jwt');
-    router.push('/');
+    addToCart(res, 'jwt', false);
+    return window.location.replace('/');
   };
 
   return (

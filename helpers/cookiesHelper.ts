@@ -2,16 +2,6 @@ import { getCookie, setCookie } from 'cookies-next';
 import { isCartProduct } from './isProduct';
 import { ICartProduct } from './types';
 
-export const getJwtCookie = () => {
-  const jwtCookie = getCookie('jwt');
-
-  if (jwtCookie) {
-    const token = JSON.parse(jwtCookie);
-    return token;
-  }
-  return false;
-};
-
 export const getCookies = (key: string): ICartProduct[] | [] => {
   const cookies = JSON.parse(getCookie(key) || '[]');
   return cookies.filter(isCartProduct);
@@ -22,8 +12,8 @@ export const hasOnCookiesAlready = (name: string, field: string) => {
   return cookies.find(({ name: prodName }) => prodName === name);
 };
 
-export const addToCart = (toAdd: unknown, field: string) => {
-  setCookie(field, JSON.stringify(toAdd), {
+export const addToCart = (toAdd: unknown, field: string, toJson = true) => {
+  setCookie(field, toJson ? JSON.stringify(toAdd) : toAdd, {
     sameSite: 'none',
     secure: true,
     maxAge: 60 * 60 * 24 * 7,

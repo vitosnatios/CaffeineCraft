@@ -1,15 +1,15 @@
 const jwt = require('jsonwebtoken');
 import { NextResponse } from 'next/server';
+import { cookies } from 'next/headers';
 
 const jwtSecret = process.env.JWT_SECRET;
 
-// type Data = { id: string } | { message: string };
-
-export async function POST(request: Request) {
+export async function GET(request: Request) {
   try {
-    const { jwt: token } = await request.json();
+    const jwtCookie = cookies().get('jwt');
+    if (!jwtCookie) return NextResponse.json('Invalid token.');
+    const token = jwtCookie.value;
     const decoded = await jwt.verify(token, jwtSecret);
-
     if (decoded) {
       const { id } = decoded.data;
       return NextResponse.json({ id });
