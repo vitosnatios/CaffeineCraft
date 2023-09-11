@@ -1,16 +1,10 @@
 import './globals.css';
-import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
 import Header from './components/partials/Header';
 import Footer from './components/partials/Footer';
 import GlobalContextProvider from './context/GlobalContext';
 
 const inter = Inter({ subsets: ['latin'] });
-
-export const metadata: Metadata = {
-  title: 'CaffeineCraft',
-  description: 'Ecommerce Challenge',
-};
 
 export default function RootLayout({
   children,
@@ -19,6 +13,8 @@ export default function RootLayout({
 }) {
   return (
     <html lang='en'>
+      <title>CaffeineCraft</title>
+      <meta name='description' content='Ecommerce Challenge' />
       <GlobalContextProvider>
         <body className={inter.className}>
           <div className='flex flex-col min-h-screen'>
