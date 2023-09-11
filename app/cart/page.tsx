@@ -4,12 +4,15 @@ import { useEffect, useState } from 'react';
 import { ICartProduct } from '@/helpers/types';
 import { changeQuantityFromAItem, getCookies } from '@/helpers/cookiesHelper';
 import CartItem from '../components/cart/CartItem';
+import { useGlobalContext } from '../context/GlobalContext';
+import Button from '../components/generalElements/Button';
 
 const CartPage = () => {
   const [cartItems, setCartItems] = useState<ICartProduct[] | []>([]);
   const [itensQuantity, setItensQuantity] = useState<{
     [key: string]: number;
   }>();
+  const { loggedIn } = useGlobalContext();
 
   const handleQuantityChange = (itemName: string, newQuantity: number) => {
     if (newQuantity == 0) return;
@@ -51,17 +54,21 @@ const CartPage = () => {
       {cartItems.length ? (
         <>
           <p className='text-xl mt-4'>Total: ${total.toFixed(2)}</p>
-          <Link href='/payment'>
-            <button className='mt-4 bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600 transition duration-300 focus:outline-none'>
-              Proceed to Checkout
-            </button>
-          </Link>
+          {loggedIn ? (
+            <Link href='/checkout'>
+              <Button>Proceed to checkout</Button>
+            </Link>
+          ) : (
+            <Link href='/auth/login'>
+              <Button>
+                You need to be logged in to perform this operation
+              </Button>
+            </Link>
+          )}
         </>
       ) : (
         <Link href='/shop'>
-          <button className='mt-4 bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600 transition duration-300 focus:outline-none'>
-            You haven&apos;t pick anything yet
-          </button>
+          <Button>You haven&apos;t pick anything yet</Button>
         </Link>
       )}
     </section>
