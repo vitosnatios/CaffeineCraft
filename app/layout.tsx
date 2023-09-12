@@ -4,7 +4,6 @@ import { Inter } from 'next/font/google';
 import Header from './components/partials/Header';
 import Footer from './components/partials/Footer';
 import GlobalContextProvider from './context/GlobalContext';
-import { memo } from 'react';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -18,7 +17,7 @@ function RootLayout({ children }: { children: React.ReactNode }) {
         <body className={inter.className}>
           <div className='flex flex-col min-h-screen'>
             <Header />
-            <div className='flex-grow bg-gray-100py-8 px-4 md:px-16 bg-gray-100'>
+            <div className='flex-grow bg-gray-100 py-8 px-4 md:px-16'>
               {children}
             </div>
             <Footer />

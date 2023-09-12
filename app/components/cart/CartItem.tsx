@@ -1,4 +1,4 @@
-import { deleteFromCart, getCookies } from '@/helpers/cookiesHelper';
+import { deleteFromCart } from '@/helpers/cookiesHelper';
 import { ICartProduct } from '@/helpers/types';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -18,6 +18,11 @@ const CartItem = ({
   itemStartingQuantity,
 }: Props) => {
   const { name, price, image, imgHeight, imgWidth } = product;
+
+  const handleDeleteItem = () => {
+    deleteFromCart(name, 'cart');
+    setCartItems((prev) => prev.filter((item) => item.name !== name));
+  };
 
   return (
     <li className='bg-white p-4 rounded-lg shadow-md flex items-center'>
@@ -46,10 +51,7 @@ const CartItem = ({
             className='w-16 border rounded-md p-1 text-center'
           />
           <button
-            onClick={(e) => {
-              deleteFromCart(name, 'cart');
-              setCartItems(getCookies('cart'));
-            }}
+            onClick={handleDeleteItem}
             className='text-red-500 hover:text-red-700 focus:outline-none'
           >
             Delete

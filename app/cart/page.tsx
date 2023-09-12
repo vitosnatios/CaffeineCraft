@@ -1,6 +1,6 @@
 'use client';
 import Link from 'next/link';
-import { memo, useCallback, useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { ICartProduct } from '@/helpers/types';
 import { changeQuantityFromAItem, getCookies } from '@/helpers/cookiesHelper';
 import CartItem from '../components/cart/CartItem';

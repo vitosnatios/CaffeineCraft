@@ -7,7 +7,7 @@ const ScrollCarousel = dynamic(() => import('scroll-carousel-react'), {
 });
 const FeaturedItemsCarousel = ({ products }: { products: IProduct[] }) => {
   return (
-    <ScrollCarousel className='mx-auto pb-8' autoplay>
+    <ScrollCarousel className='container mx-auto pb-8' autoplay>
       {products?.map(({ id, name, image, imgWidth, imgHeight, price }) => (
         <CarrouselItem
           key={id}

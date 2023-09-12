@@ -27,7 +27,7 @@ const Header = () => {
   }, []);
 
   return (
-    <header className='bg-gray-900 text-white py-4 px-6'>
+    <header className='bg-gray-900 text-white py-4 px-6 md:px-16'>
       <div className='container mx-auto flex justify-between items-center relative'>
         <Link href='/' className='text-gray-300 hover:text-white block'>
           <h1 className='text-3xl font-bold'>CaffeineCraft</h1>

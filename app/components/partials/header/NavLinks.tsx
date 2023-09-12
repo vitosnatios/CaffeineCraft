@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import React from 'react';
+import React, { memo } from 'react';
 import LoginOrProfileLink from './LoginOrProfileLink';
 
 const NavLinks = () => {
@@ -19,4 +19,4 @@ const NavLinks = () => {
   );
 };
 
-export default NavLinks;
+export default memo(NavLinks);

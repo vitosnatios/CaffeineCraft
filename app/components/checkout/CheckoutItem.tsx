@@ -8,12 +8,14 @@ const CheckoutItem = ({ item }: Props) => {
   return (
     <div className='bg-white p-4 rounded-lg shadow-md'>
       <div className='flex items-center justify-between'>
-        <div className='w-16 h-16 relative'>
+        <div className='w-16 h-16 relative bg-black overflow-hidden flex items-center'>
           <Image
             src={`/coffees/${item.image}.jpg`}
             alt={item.name}
-            layout='fill'
-            objectFit='cover'
+            width={item.imgWidth}
+            height={item.imgHeight}
+            // layout='fill'
+            // objectFit='cover'
           />
         </div>
         <div className='ml-4'>

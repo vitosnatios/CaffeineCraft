@@ -1,3 +1,4 @@
+import { memo } from 'react';
 import { RefObject } from 'react';
 
 type Props = {
@@ -27,4 +28,4 @@ const FormInput = ({ label, name, type, placeholder, refProp }: Props) => {
   );
 };
 
-export default FormInput;
+export default memo(FormInput);
