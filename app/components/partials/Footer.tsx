@@ -3,7 +3,7 @@ import React from 'react';
 
 const Footer = () => {
   return (
-    <footer className='bg-gray-900 text-white py-12'>
+    <footer className='bg-gray-900 text-white py-12 px-6 text-center'>
       <div className='container mx-auto flex flex-col md:flex-row justify-between items-center'>
         <div className='md:w-1/2 text-center md:text-left mb-6 md:mb-0'>
           <Link href='/'>

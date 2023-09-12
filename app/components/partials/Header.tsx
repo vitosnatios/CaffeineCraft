@@ -19,10 +19,8 @@ const Header = () => {
   };
 
   useEffect(() => {
+    setMenuOpen(window.innerWidth > 768 ? true : false);
     window.addEventListener('resize', handleResize);
-    if (window.innerWidth > 768 ? true : false) {
-      setMenuOpen(true);
-    }
     return () => {
       window.removeEventListener('resize', handleResize);
     };

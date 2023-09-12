@@ -99,7 +99,7 @@ const RegisterPage = () => {
           {loading ? (
             <PuffLoader className='m-auto' color='rgb(59 130 246)' />
           ) : (
-            <div className='flex justify-between items-center'>
+            <div className='flex flex-wrap items-center gap-5'>
               <Button>Register</Button>
               <Link
                 className='text-blue-500 hover:underline'
