@@ -23,18 +23,16 @@ const ProfilePage = async () => {
       <div className='bg-white rounded-lg shadow-md p-6'>
         <h2 className='text-xl font-semibold mb-2'>Coffee History</h2>
         <ul>
-          {user.history?.map(({ products, totalPrice }: any) => {
+          {user.history?.map(({ products, totalPrice }: any, ind: number) => {
             return (
-              <>
-                <li className='mb-4 rounded-lg'>
-                  {products.map((prod: Prod, index: number) => (
-                    <HistoryItem key={index} prod={prod} />
-                  ))}
-                  <p className='text-lg font-semibold p-3 bg-white shadow-md'>
-                    Total: R${totalPrice.toFixed(2)}
-                  </p>
-                </li>
-              </>
+              <li key={ind} className='mb-4 rounded-lg'>
+                {products.map((prod: Prod, index: number) => (
+                  <HistoryItem key={index * Math.random()} prod={prod} />
+                ))}
+                <p className='text-lg font-semibold p-3 bg-white shadow-md'>
+                  Total: R${totalPrice.toFixed(2)}
+                </p>
+              </li>
             );
           })}
         </ul>
