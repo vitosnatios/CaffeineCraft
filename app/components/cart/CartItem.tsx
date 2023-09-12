@@ -25,7 +25,7 @@ const CartItem = ({
   };
 
   return (
-    <li className='bg-white p-4 rounded-lg shadow-md flex flex-wrap justify-center items-center'>
+    <li className='bg-white p-4 rounded-lg shadow-md flex flex-wrap items-center justify-center sm:justify-start'>
       <Link href={`/coffee/${image}`}>
         <Image
           src={`/coffees/${image}.jpg`}

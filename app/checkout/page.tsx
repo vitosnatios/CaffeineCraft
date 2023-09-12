@@ -1,17 +1,11 @@
 'use client';
-import { getUserByJwt } from '../database/user/getUserByJwt';
-import { cookies } from 'next/headers';
-import { isCartProduct } from '@/helpers/isProduct';
 import { ICartProduct, IUser } from '@/helpers/types';
 import Button from '../components/generalElements/Button';
-import { buyCoffees } from '@/helpers/buyCoffees';
-import { redirect, useRouter } from 'next/navigation';
+import { useRouter } from 'next/navigation';
 import CheckoutItem from '../components/checkout/CheckoutItem';
 import { useEffect, useState } from 'react';
 import useFetch from '../custom-hooks/useFetch';
-import Error from '../components/form/Error';
 import { PuffLoader } from 'react-spinners';
-import { revalidatePath } from 'next/cache';
 import Title from '../components/text/Title';
 import Link from 'next/link';
 import SectionContainer from '../components/container/SectionContainer';
@@ -60,8 +54,8 @@ const CheckoutPage = () => {
       console.log(window.location.href);
     }
   };
+  if (error) throw new Error(error);
   if (loading) return <PuffLoader className='text-blue-500 m-auto mt-10' />;
-  if (error) return <Error message={error} />;
   if (!checkoutData.cartItems) return;
   if (!checkoutData.cartItems.length)
     return (
