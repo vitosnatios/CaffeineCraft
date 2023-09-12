@@ -4,14 +4,11 @@ import { Inter } from 'next/font/google';
 import Header from './components/partials/Header';
 import Footer from './components/partials/Footer';
 import GlobalContextProvider from './context/GlobalContext';
+import { memo } from 'react';
 
 const inter = Inter({ subsets: ['latin'] });
 
-export default function RootLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
+function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang='en'>
       <title>CaffeineCraft</title>
@@ -31,3 +28,4 @@ export default function RootLayout({
     </html>
   );
 }
+export default RootLayout;

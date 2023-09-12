@@ -1,7 +1,3 @@
-'use client';
-import { useGlobalContext } from '@/app/context/GlobalContext';
-import React from 'react';
-
 type Props = {
   children: string;
   onClick?: () => void;

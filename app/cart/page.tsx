@@ -1,6 +1,6 @@
 'use client';
 import Link from 'next/link';
-import { useEffect, useState } from 'react';
+import { memo, useCallback, useEffect, useState } from 'react';
 import { ICartProduct } from '@/helpers/types';
 import { changeQuantityFromAItem, getCookies } from '@/helpers/cookiesHelper';
 import CartItem from '../components/cart/CartItem';
@@ -14,28 +14,34 @@ const CartPage = () => {
   }>();
   const { loggedIn } = useGlobalContext();
 
-  const handleQuantityChange = (itemName: string, newQuantity: number) => {
-    if (newQuantity == 0) return;
-    changeQuantityFromAItem(itemName, 'cart', newQuantity);
-    setQuantityAndCartItens();
-  };
-
-  const setQuantityAndCartItens = () => {
+  const setQuantityAndCartItens = useCallback(() => {
     const coffees = getCookies('cart');
     setCartItems(coffees);
-    coffees.forEach(({ image, quantity }) => {
+    coffees.forEach(({ name, quantity }) => {
       setItensQuantity((prev) => {
-        return { ...prev, [image]: quantity };
+        return { ...prev, [name]: quantity };
       });
     });
-  };
+  }, []);
 
-  useEffect(() => setQuantityAndCartItens(), []);
+  const handleQuantityChange = useCallback(
+    (itemName: string, newQuantity: number) => {
+      if (newQuantity == 0) return;
+      changeQuantityFromAItem(itemName, 'cart', newQuantity);
+      setItensQuantity((prev) => ({
+        ...prev,
+        [itemName]: newQuantity,
+      }));
+    },
+    []
+  );
 
   const total = cartItems.reduce(
-    (acc, item) => acc + item.price * itensQuantity![item.image],
+    (acc, item) => acc + item.price * itensQuantity![item.name],
     0
   );
+
+  useEffect(() => setQuantityAndCartItens(), [setQuantityAndCartItens]);
 
   return (
     <section className='container mx-auto py-8 bg-gray-100'>
@@ -47,7 +53,7 @@ const CartPage = () => {
             product={product}
             handleQuantityChange={handleQuantityChange}
             setCartItems={setCartItems}
-            itemStartingQuantity={itensQuantity![product.image]}
+            itemStartingQuantity={itensQuantity![product.name]}
           />
         ))}
       </ul>

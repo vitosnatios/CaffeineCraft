@@ -30,7 +30,7 @@ export const addOneToCart = (
   quantity: number = 1
 ) => {
   const prevCookies = getCookies(field);
-  const hasAlready = hasOnCookiesAlready(image, field);
+  const hasAlready = hasOnCookiesAlready(name, field);
   if (!hasAlready) {
     const updatedCookie = [
       ...prevCookies,

@@ -2,7 +2,7 @@ import { deleteFromCart, getCookies } from '@/helpers/cookiesHelper';
 import { ICartProduct } from '@/helpers/types';
 import Image from 'next/image';
 import Link from 'next/link';
-import { Dispatch, SetStateAction, useState } from 'react';
+import { Dispatch, SetStateAction, memo } from 'react';
 
 type Props = {
   product: ICartProduct;
@@ -60,4 +60,4 @@ const CartItem = ({
   );
 };
 
-export default CartItem;
+export default memo(CartItem);
