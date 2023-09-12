@@ -12,24 +12,21 @@ type Props = {
 
 const CarrouselItem = ({ image, imgWidth, imgHeight, name, price }: Props) => {
   return (
-    <div>
-      <Link href={`/coffee/${image}`}>
-        <div className='h-60 w-auto overflow-hidden flex'>
-          <Image
-            width={imgWidth}
-            height={imgHeight}
-            src={`/coffees/${image}.jpg`}
-            alt={name}
-            className='self-center'
-            loading='eager'
-          />
-        </div>
-        <div className='flex justify-between'>
-          <span>{name}</span>
-          <span>R${price.toFixed(2)}/Kg</span>
-        </div>
-      </Link>
-    </div>
+    <Link href={`/coffee/${image}`}>
+      <div className='h-60  overflow-hidden flex items-center'>
+        <Image
+          width={imgWidth}
+          height={imgHeight}
+          src={`/coffees/${image}.jpg`}
+          alt={name}
+          className='w-auto'
+        />
+      </div>
+      <div className='flex justify-between'>
+        <span>{name}</span>
+        <span>R${price.toFixed(2)}/Kg</span>
+      </div>
+    </Link>
   );
 };
 
