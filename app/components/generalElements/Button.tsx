@@ -5,22 +5,11 @@ import React from 'react';
 type Props = {
   children: string;
   onClick?: () => void;
-  trigger?: boolean;
-  delay?: boolean;
 };
 
-const Button = ({
-  children,
-  onClick,
-  trigger = false,
-  delay = false,
-}: Props) => {
-  const { setGlobalTrigger } = useGlobalContext();
+const Button = ({ children, onClick }: Props) => {
   const handleClick = () => {
     if (onClick) onClick();
-    if (trigger && delay)
-      return setTimeout(() => setGlobalTrigger((prev) => !prev), 2000);
-    if (trigger) setGlobalTrigger((prev) => !prev);
   };
 
   return (

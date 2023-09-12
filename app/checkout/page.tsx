@@ -1,47 +1,85 @@
-import React from 'react';
+'use client';
 import { getUserByJwt } from '../database/user/getUserByJwt';
 import { cookies } from 'next/headers';
-import Image from 'next/image';
 import { isCartProduct } from '@/helpers/isProduct';
-import { ICartProduct } from '@/helpers/types';
-import Link from 'next/link';
+import { ICartProduct, IUser } from '@/helpers/types';
 import Button from '../components/generalElements/Button';
 import { buyCoffees } from '@/helpers/buyCoffees';
-import { redirect } from 'next/navigation';
+import { redirect, useRouter } from 'next/navigation';
 import CheckoutItem from '../components/checkout/CheckoutItem';
+import { useEffect, useState } from 'react';
+import useFetch from '../custom-hooks/useFetch';
+import Error from '../components/form/Error';
+import { PuffLoader } from 'react-spinners';
+import { revalidatePath } from 'next/cache';
 
-const CheckoutPage = async () => {
-  const user = await getUserByJwt();
-  const carCache = cookies().get('cart');
+const CheckoutPage = () => {
+  const router = useRouter();
+  const { loading, error, request, setError } = useFetch();
+  const [checkoutData, setCheckoutData] = useState<{
+    user: IUser | null;
+    cartItems: ICartProduct[] | null;
+  }>({
+    user: null,
+    cartItems: null,
+  });
 
-  if (
-    !carCache ||
-    ('value' in carCache && !carCache.value) ||
-    (Array.isArray(carCache) && !carCache.length)
-  ) {
-    new Error('Yor cart is empty.');
+  let totalPrice;
+  if (checkoutData.cartItems) {
+    totalPrice = checkoutData?.cartItems.reduce(
+      (acc, item) => acc + item.price * item.quantity,
+      0
+    );
   }
-  if (!user) throw new Error('You are not logged in.');
-  const cartItems = [...JSON.parse(carCache!.value)].filter(isCartProduct);
-  const totalPrice = cartItems.reduce(
-    (acc, item) => acc + item.price * item.quantity,
-    0
-  );
+
+  useEffect(() => {
+    const loadCheckoutData = async () => {
+      const { response, json } = await request('/api/checkout', {});
+      if ((!json.user && !json.carItems) || !response!.ok) {
+        return setError(
+          json.message ||
+            'Server had some internal problems. Please, try again later.'
+        );
+      }
+      const { user, cartItems } = json;
+      setCheckoutData({ user, cartItems });
+    };
+    loadCheckoutData();
+  }, [request, setError]);
 
   const handleBuy = async () => {
-    'use server';
-    const res = await buyCoffees(cartItems, totalPrice);
-    if (res) {
-      cookies().delete('cart');
-      redirect('/profile');
+    const { response, json } = await request('/api/checkout', {
+      method: 'POST',
+    });
+    if (json && 'success' in json) {
+      router.push('/profile');
+      router.refresh();
+      console.log(window.location.href);
     }
   };
-
+  if (loading) return <PuffLoader className='text-blue-500 m-auto mt-10' />;
+  if (error) return <Error message={error} />;
+  if (!checkoutData.cartItems) return;
+  if (!checkoutData.cartItems.length)
+    return (
+      <div className='container mx-auto py-8 bg-gray-100'>
+        <h1 className='text-3xl font-semibold text-gray-800 mb-4'>Checkout</h1>
+        <div className='mt-8 text-xl font-semibold text-gray-800'>
+          You haven&apos;t pick anything yet
+        </div>
+        <div className='mt-8'>
+          <Button onClick={handleBuy}>Proceed to Payment (Buy)</Button>
+          <a href='/' className='ml-4 text-gray-600 hover:text-blue-500'>
+            Continue Shopping
+          </a>
+        </div>
+      </div>
+    );
   return (
     <div className='container mx-auto py-8 bg-gray-100'>
       <h1 className='text-3xl font-semibold text-gray-800 mb-4'>Checkout</h1>
       <div className='grid gap-4 md:grid-cols-2'>
-        {cartItems.map((item: ICartProduct, index: number) => (
+        {checkoutData.cartItems.map((item: ICartProduct, index: number) => (
           <CheckoutItem key={index} item={item} />
         ))}
       </div>
@@ -49,9 +87,7 @@ const CheckoutPage = async () => {
         Total Price: R${totalPrice}
       </div>
       <div className='mt-8'>
-        <form action={handleBuy}>
-          <Button>Proceed to Payment (Buy)</Button>
-        </form>
+        <Button onClick={handleBuy}>Proceed to Payment (Buy)</Button>
         <a href='/' className='ml-4 text-gray-600 hover:text-blue-500'>
           Continue Shopping
         </a>

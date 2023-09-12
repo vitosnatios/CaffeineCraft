@@ -17,7 +17,7 @@ export default function Error({ error }: { error: Error }) {
           className='text-blue-400 text-lg font-medium hover:underline'
           href='/'
         >
-          <Button trigger>Back to Home</Button>
+          <Button>Back to Home</Button>
         </Link>
       </div>
     </div>

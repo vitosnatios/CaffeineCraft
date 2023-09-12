@@ -11,7 +11,7 @@ export const getProductByName = async (slug: string) => {
       return result;
     }
     throw new Error(`Coffee ${slug} not found.`);
-  } catch (error) {
-    console.log(error);
+  } catch (error: any) {
+    throw new Error(error.message);
   }
 };

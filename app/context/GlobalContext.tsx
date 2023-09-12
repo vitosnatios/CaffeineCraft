@@ -1,4 +1,3 @@
-'use client';
 import {
   createContext,
   useContext,
@@ -14,18 +13,15 @@ type Props = { children: React.ReactElement };
 const GlobalContext = createContext<{
   loggedIn: boolean | string;
   setLoggedIn: Dispatch<SetStateAction<string | boolean>>;
-  setGlobalTrigger: Dispatch<SetStateAction<boolean>>;
 }>({
   loggedIn: false,
   setLoggedIn: () => {},
-  setGlobalTrigger: () => {},
 });
 
 export const useGlobalContext = () => useContext(GlobalContext);
 
 const GlobalContextProvider = ({ children }: Props) => {
   const [loggedIn, setLoggedIn] = useState<boolean | string>(false);
-  const [globalTrigger, setGlobalTrigger] = useState<boolean>(false);
 
   useEffect(() => {
     const checkAuth = async () => {
@@ -34,9 +30,9 @@ const GlobalContextProvider = ({ children }: Props) => {
       setLoggedIn(false);
     };
     checkAuth();
-  }, [globalTrigger]);
+  }, []);
   return (
-    <GlobalContext.Provider value={{ loggedIn, setLoggedIn, setGlobalTrigger }}>
+    <GlobalContext.Provider value={{ loggedIn, setLoggedIn }}>
       {children}
     </GlobalContext.Provider>
   );

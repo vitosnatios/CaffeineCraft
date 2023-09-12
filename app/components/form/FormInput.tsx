@@ -1,19 +1,21 @@
-import React from 'react';
+import { RefObject } from 'react';
 
 type Props = {
   label: string;
   name: string;
   type: string;
   placeholder: string;
+  refProp?: RefObject<HTMLInputElement>;
 };
 
-const FormInput = ({ label, name, type, placeholder }: Props) => {
+const FormInput = ({ label, name, type, placeholder, refProp }: Props) => {
   return (
     <div>
       <label htmlFor={name} className='block text-gray-700 font-semibold mb-2'>
         {label}
       </label>
       <input
+        ref={refProp}
         type={type}
         id={name}
         name={name}

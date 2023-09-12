@@ -1,5 +1,3 @@
-'use server';
-
 import { getUserByJwt } from '@/app/database/user/getUserByJwt';
 import { ICartProduct } from './types';
 import { getCollection } from '@/app/database/connect';
@@ -13,12 +11,14 @@ export const buyCoffees = async (
     price,
     quantity,
   }));
+
   const user = await getUserByJwt();
   const newPurchase = {
     totalPrice,
     products,
   };
   if (!user) throw new Error('You are not logged in.');
+  if (!products.length) throw new Error('No itens inside the card.');
   const productsCollection = await getCollection('products');
   const areInStock = await checkIfThereAreItensOutOfStockAndSubtractItToBuy(
     productsCollection,
@@ -61,7 +61,7 @@ const checkIfThereAreItensOutOfStockAndSubtractItToBuy = async (
   });
   const thereIsSomeOutOfStock = areInStock.find((item) => item === false);
   if (thereIsSomeOutOfStock) throw new Error('Some item is out of stock.');
-  //  compra
+
   const updatedStockandBought = products.map((item) => {
     return {
       name: item.name,

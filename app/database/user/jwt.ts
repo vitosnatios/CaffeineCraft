@@ -1,6 +1,5 @@
-const jwt = require('jsonwebtoken');
-
 export const createJwt = (_id: string) => {
+  const jwt = require('jsonwebtoken');
   const jwtSecret = process.env.JWT_SECRET;
   const token = jwt.sign(
     {

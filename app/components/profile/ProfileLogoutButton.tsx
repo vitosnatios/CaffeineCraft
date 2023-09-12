@@ -6,13 +6,12 @@ import { useGlobalContext } from '@/app/context/GlobalContext';
 import { useRouter } from 'next/navigation';
 
 const ProfileLogoutButton = () => {
-  const { setLoggedIn, setGlobalTrigger } = useGlobalContext();
+  const { setLoggedIn } = useGlobalContext();
   const route = useRouter();
 
   const handleClick = () => {
     deleteCookie('jwt');
     setLoggedIn(false);
-    setGlobalTrigger((prev) => !prev);
     route.push('/');
   };
 
