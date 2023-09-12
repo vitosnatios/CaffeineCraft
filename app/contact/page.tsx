@@ -1,11 +1,13 @@
 import React from 'react';
+import Title from '../components/text/Title';
+import SectionContainer from '../components/container/SectionContainer';
 
 type Props = {};
 
 const ContactPage = (props: Props) => {
   return (
-    <div className='container mx-auto py-8 bg-gray-100'>
-      <h1 className='text-3xl font-semibold text-gray-800 mb-4'>Contact Us</h1>
+    <SectionContainer>
+      <Title>Contact Us</Title>
       <div className='bg-white rounded-lg shadow-md p-6'>
         <h2 className='text-xl font-semibold mb-2'>Get in Touch</h2>
         <p className='text-gray-700'>
@@ -45,7 +47,7 @@ const ContactPage = (props: Props) => {
           </li>
         </ul>
       </div>
-    </div>
+    </SectionContainer>
   );
 };
 

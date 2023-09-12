@@ -12,6 +12,9 @@ import useFetch from '../custom-hooks/useFetch';
 import Error from '../components/form/Error';
 import { PuffLoader } from 'react-spinners';
 import { revalidatePath } from 'next/cache';
+import Title from '../components/text/Title';
+import Link from 'next/link';
+import SectionContainer from '../components/container/SectionContainer';
 
 const CheckoutPage = () => {
   const router = useRouter();
@@ -62,37 +65,32 @@ const CheckoutPage = () => {
   if (!checkoutData.cartItems) return;
   if (!checkoutData.cartItems.length)
     return (
-      <div className='container mx-auto py-8 bg-gray-100'>
-        <h1 className='text-3xl font-semibold text-gray-800 mb-4'>Checkout</h1>
-        <div className='mt-8 text-xl font-semibold text-gray-800'>
+      <SectionContainer>
+        <Title>Checkout</Title>
+        <div className='my-4 text-xl font-semibold text-gray-800'>
           You haven&apos;t pick anything yet
         </div>
-        <div className='mt-8'>
-          <Button onClick={handleBuy}>Proceed to Payment (Buy)</Button>
-          <a href='/' className='ml-4 text-gray-600 hover:text-blue-500'>
-            Continue Shopping
-          </a>
-        </div>
-      </div>
+        <Link href='/shop'>
+          <Button onClick={handleBuy}>Continue Shopping</Button>
+        </Link>
+      </SectionContainer>
     );
   return (
-    <div className='container mx-auto py-8 bg-gray-100'>
-      <h1 className='text-3xl font-semibold text-gray-800 mb-4'>Checkout</h1>
+    <SectionContainer>
+      <Title>Checkout</Title>
       <div className='grid gap-4 md:grid-cols-2'>
         {checkoutData.cartItems.map((item: ICartProduct, index: number) => (
           <CheckoutItem key={index} item={item} />
         ))}
       </div>
-      <div className='mt-8 text-xl font-semibold text-gray-800'>
+      <div className='my-4 text-xl font-semibold text-gray-800'>
         Total Price: R${totalPrice}
       </div>
-      <div className='mt-8'>
-        <Button onClick={handleBuy}>Proceed to Payment (Buy)</Button>
-        <a href='/' className='ml-4 text-gray-600 hover:text-blue-500'>
-          Continue Shopping
-        </a>
-      </div>
-    </div>
+      <Button onClick={handleBuy}>Proceed to Payment (Buy)</Button>
+      <Link href='/' className='ml-4 text-gray-600 hover:text-blue-500'>
+        Continue Shopping
+      </Link>
+    </SectionContainer>
   );
 };
 

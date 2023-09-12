@@ -66,50 +66,45 @@ const RegisterPage = () => {
   return (
     <AuthContainer>
       <Form onSubmit={handleSubmit} name='Register'>
-        <>
-          <FormInput
-            label='Name'
-            name='name'
-            type='text'
-            placeholder='John Doe'
-            refProp={nameRef}
-          />
-          <FormInput
-            label='Age'
-            name='age'
-            type='number'
-            placeholder='30'
-            refProp={ageRef}
-          />
-          <FormInput
-            label='Email Address'
-            name='email'
-            type='email'
-            placeholder='you@example.com'
-            refProp={emailRef}
-          />
-          <FormInput
-            label='Password'
-            name='password'
-            type='password'
-            placeholder='********'
-            refProp={passwordRef}
-          />
-          {error && <Error message={error} />}
-          {loading ? (
-            <PuffLoader className='m-auto' color='rgb(59 130 246)' />
-          ) : (
-            <div className='flex flex-wrap items-center gap-5'>
-              <Button>Register</Button>
-              <Link
-                className='text-blue-500 hover:underline'
-                href='/auth/login'
-              >
-                Already have an account? Login
-              </Link>
-            </div>
-          )}
-        </>
+        <FormInput
+          label='Name'
+          name='name'
+          type='text'
+          placeholder='John Doe'
+          refProp={nameRef}
+        />
+        <FormInput
+          label='Age'
+          name='age'
+          type='number'
+          placeholder='30'
+          refProp={ageRef}
+        />
+        <FormInput
+          label='Email Address'
+          name='email'
+          type='email'
+          placeholder='you@example.com'
+          refProp={emailRef}
+        />
+        <FormInput
+          label='Password'
+          name='password'
+          type='password'
+          placeholder='********'
+          refProp={passwordRef}
+        />
+        {error && <Error message={error} />}
+        {loading ? (
+          <PuffLoader className='m-auto' color='rgb(59 130 246)' />
+        ) : (
+          <div className='flex flex-wrap items-center gap-5'>
+            <Button>Register</Button>
+            <Link className='text-blue-500 hover:underline' href='/auth/login'>
+              Already have an account? Login
+            </Link>
+          </div>
+        )}
       </Form>
     </AuthContainer>
   );

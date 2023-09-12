@@ -1,4 +1,5 @@
 import AddToCartButton from '@/app/components/coffePage/AddToCartButton';
+import SectionContainer from '@/app/components/container/SectionContainer';
 import { getProductByName } from '@/app/database/product/getProductById';
 import { getProductsSlugNames } from '@/app/database/product/getProductsSlugNames';
 import { IProduct } from '@/helpers/types';
@@ -13,9 +14,9 @@ const CoffeePage = async ({ params }: Props) => {
   const { image, price, description, name, imgWidth, imgHeight } = coffee;
 
   return (
-    <div className='container mx-auto py-8 bg-gray-100'>
+    <SectionContainer>
       <div className='container mx-auto flex flex-col md:flex-row items-center gap-5'>
-        <div className='md:w-1/2'>
+        <div className=''>
           <Image
             src={`/coffees/${image}.jpg`}
             alt={image}
@@ -30,7 +31,7 @@ const CoffeePage = async ({ params }: Props) => {
           <AddToCartButton coffee={coffee as IProduct} />
         </div>
       </div>
-    </div>
+    </SectionContainer>
   );
 };
 

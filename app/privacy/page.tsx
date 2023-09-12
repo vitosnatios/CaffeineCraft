@@ -1,13 +1,13 @@
 import React from 'react';
+import Title from '../components/text/Title';
+import SectionContainer from '../components/container/SectionContainer';
 
 type Props = {};
 
 const PrivacyPage = (props: Props) => {
   return (
-    <div className='container mx-auto py-8 bg-gray-100'>
-      <h1 className='text-3xl font-semibold text-gray-800 mb-4'>
-        Privacy Policy
-      </h1>
+    <SectionContainer>
+      <Title>Privacy Policy</Title>
       <div className='bg-white rounded-lg shadow-md p-6'>
         <p className='text-gray-700'>
           At CaffeineCraft, we are committed to protecting your privacy and
@@ -59,7 +59,7 @@ const PrivacyPage = (props: Props) => {
           .
         </p>
       </div>
-    </div>
+    </SectionContainer>
   );
 };
 

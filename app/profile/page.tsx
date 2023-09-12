@@ -1,3 +1,4 @@
+import SectionContainer from '../components/container/SectionContainer';
 import HistoryItem from '../components/profile/HistoryItem';
 import ProfileLogoutButton from '../components/profile/ProfileLogoutButton';
 import { getUserByJwt } from '../database/user/getUserByJwt';
@@ -9,8 +10,8 @@ const ProfilePage = async () => {
 
   if (!user) throw new Error('You are not logged in.');
   return (
-    <div className='container mx-auto py-8 bg-gray-100'>
-      <div className='flex justify-between items-center'>
+    <SectionContainer>
+      <div className='flex justify-between items-start'>
         <h1 className='text-3xl font-semibold mb-4'>Profile</h1>
         <ProfileLogoutButton />
       </div>
@@ -37,7 +38,7 @@ const ProfilePage = async () => {
           })}
         </ul>
       </div>
-    </div>
+    </SectionContainer>
   );
 };
 

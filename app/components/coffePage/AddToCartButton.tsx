@@ -3,6 +3,7 @@ import { addOneToCart, hasOnCookiesAlready } from '@/helpers/cookiesHelper';
 import { IProduct } from '@/helpers/types';
 import Link from 'next/link';
 import { ChangeEvent, useCallback, useEffect, useState } from 'react';
+import Button from '../generalElements/Button';
 
 const AddToCartButton = ({ coffee }: { coffee: IProduct }) => {
   const [quantity, setQuantity] = useState<number>(1);
@@ -44,19 +45,12 @@ const AddToCartButton = ({ coffee }: { coffee: IProduct }) => {
           onChange={handleQuantityChange}
           className='w-16 border rounded-md p-1 text-center'
         />
-        <button
-          onClick={handleAddToCart}
-          className='bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600 transition duration-300'
-        >
-          {buttonText}
-        </button>
+        <Button onClick={handleAddToCart}>{buttonText}</Button>
       </div>
     </>
   ) : (
     <Link href='/cart'>
-      <button className='bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600 transition duration-300'>
-        {buttonText}
-      </button>
+      <Button>{buttonText}</Button>
     </Link>
   );
 };

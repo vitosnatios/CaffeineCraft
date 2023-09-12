@@ -6,6 +6,8 @@ import { changeQuantityFromAItem, getCookies } from '@/helpers/cookiesHelper';
 import CartItem from '../components/cart/CartItem';
 import { useGlobalContext } from '../context/GlobalContext';
 import Button from '../components/generalElements/Button';
+import Title from '../components/text/Title';
+import SectionContainer from '../components/container/SectionContainer';
 
 const CartPage = () => {
   const [cartItems, setCartItems] = useState<ICartProduct[] | []>([]);
@@ -44,8 +46,8 @@ const CartPage = () => {
   useEffect(() => setQuantityAndCartItens(), [setQuantityAndCartItens]);
 
   return (
-    <section className='container mx-auto py-8 bg-gray-100'>
-      <h1 className='text-3xl font-semibold text-gray-800 mb-4'>Your Cart</h1>
+    <SectionContainer>
+      <Title>Your Cart</Title>
       <ul className='grid gap-5 md:grid-cols-1 lg:grid-cols-2'>
         {cartItems.map((product, index) => (
           <CartItem
@@ -77,7 +79,7 @@ const CartPage = () => {
           <Button>You haven&apos;t pick anything yet</Button>
         </Link>
       )}
-    </section>
+    </SectionContainer>
   );
 };
 

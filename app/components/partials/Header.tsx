@@ -43,7 +43,7 @@ const Header = () => {
         <nav
           className={`${
             isMenuOpen ? 'opacity-100' : 'opacity-0 hidden'
-          } absolute right-0 top-full md:relative md:flex md:space-x-4 mt-4 md:mt-0 bg-gray-900 p-4 rounded-lg shadow-lg z-10`}
+          } absolute right-0 top-full md:relative md:flex md:space-x-4 mt-4 md:mt-0 bg-gray-900 p-4 md:p-0 rounded-lg shadow-lg z-10`}
           onClick={toggleMenu}
         >
           <NavLinks />

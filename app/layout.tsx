@@ -12,12 +12,12 @@ function RootLayout({ children }: { children: React.ReactNode }) {
     <html lang='en'>
       <title>CaffeineCraft</title>
       <meta name='description' content='Ecommerce Challenge' />
-      <link rel='icon' href='/favicon.ico' sizes='any' />
+      <link rel='icon' href='/favicon.ico' />
       <GlobalContextProvider>
         <body className={inter.className}>
           <div className='flex flex-col min-h-screen'>
             <Header />
-            <div className='flex-grow bg-gray-100 py-8 px-4 md:px-16'>
+            <div className='flex-grow bg-gray-100 py-4 md:px-16'>
               {children}
             </div>
             <Footer />

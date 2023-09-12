@@ -55,36 +55,34 @@ const LoginPage = () => {
   return (
     <AuthContainer>
       <Form onSubmit={handleSubmit} name='Login'>
-        <>
-          <FormInput
-            label='Email Address'
-            name='email'
-            type='email'
-            placeholder='you@example.com'
-            refProp={emailRef}
-          />
-          <FormInput
-            label='Password'
-            name='password'
-            type='password'
-            placeholder='********'
-            refProp={passwordRef}
-          />
-          {error && <Error message={error} />}
-          {loading ? (
-            <PuffLoader className='m-auto' color='rgb(59 130 246)' />
-          ) : (
-            <div className='flex justify-between flex-wrap items-center gap-5'>
-              <Button>Login</Button>
-              <Link
-                className='text-blue-500 hover:underline'
-                href='/auth/register'
-              >
-                Don&apos;t have an account? Register
-              </Link>
-            </div>
-          )}
-        </>
+        <FormInput
+          label='Email Address'
+          name='email'
+          type='email'
+          placeholder='you@example.com'
+          refProp={emailRef}
+        />
+        <FormInput
+          label='Password'
+          name='password'
+          type='password'
+          placeholder='********'
+          refProp={passwordRef}
+        />
+        {error && <Error message={error} />}
+        {loading ? (
+          <PuffLoader className='m-auto' color='rgb(59 130 246)' />
+        ) : (
+          <div className='flex justify-between flex-wrap items-center gap-5'>
+            <Button>Login</Button>
+            <Link
+              className='text-blue-500 hover:underline'
+              href='/auth/register'
+            >
+              Don&apos;t have an account? Register
+            </Link>
+          </div>
+        )}
       </Form>
     </AuthContainer>
   );
