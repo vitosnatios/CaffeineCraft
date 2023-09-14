@@ -1,6 +1,6 @@
 'use client';
 import dynamic from 'next/dynamic';
-import CarrouselItem from './CarrouselItem';
+import CarouselItem from './CarouselItem';
 import { IProduct } from '@/helpers/types';
 const ScrollCarousel = dynamic(() => import('scroll-carousel-react'), {
   ssr: false,
@@ -9,7 +9,7 @@ const FeaturedItemsCarousel = ({ products }: { products: IProduct[] }) => {
   return (
     <ScrollCarousel className='container mx-auto pb-8' autoplay>
       {products?.map(({ id, name, image, imgWidth, imgHeight, price }) => (
-        <CarrouselItem
+        <CarouselItem
           key={id}
           name={name}
           image={image}

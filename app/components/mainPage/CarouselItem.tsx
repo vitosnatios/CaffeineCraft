@@ -10,24 +10,23 @@ type Props = {
   price: number;
 };
 
-const CarrouselItem = ({ image, imgWidth, imgHeight, name, price }: Props) => {
+const CarouselItem = ({ image, imgWidth, imgHeight, name, price }: Props) => {
   return (
     <Link href={`/coffee/${image}`}>
-      <div className='h-60  overflow-hidden flex items-center'>
+      <div className='h-60 overflow-hidden flex items-center shadow-md hover:shadow-xl rounded-lg'>
         <Image
           width={imgWidth}
           height={imgHeight}
           src={`/coffees/${image}.jpg`}
           alt={name}
-          className='w-auto'
         />
       </div>
-      <div className='flex justify-between'>
-        <span>{name}</span>
-        <span>R${price.toFixed(2)}/Kg</span>
+      <div className='mt-2 flex justify-between items-center text-lg font-semibold'>
+        <span className='text-gray-800'>{name}</span>
+        <span className='text-green-600'>R${price.toFixed(2)}/Kg</span>
       </div>
     </Link>
   );
 };
 
-export default CarrouselItem;
+export default CarouselItem;
