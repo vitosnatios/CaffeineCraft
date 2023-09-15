@@ -13,7 +13,7 @@ type Props = {
 const CarouselItem = ({ image, imgWidth, imgHeight, name, price }: Props) => {
   return (
     <Link href={`/coffee/${image}`}>
-      <div className='h-60 w-80 overflow-hidden shadow-md hover:shadow-xl rounded-lg flex items-center'>
+      <div className='h-60 w-60 overflow-hidden shadow-md hover:shadow-xl rounded-lg flex items-center justify-center'>
         <Image
           width={imgWidth}
           height={imgHeight}
